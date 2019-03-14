@@ -1,3 +1,6 @@
+SQLALCHEMY_DATABASE_URI = "mysql+pymysql://azure:6#vWHD_$@127.0.0.1:56080/localdb"
+print(SQLALCHEMY_DATABASE_URI)
+
 # Open database connection
 import pymysql as PyMySQL
 
@@ -15,3 +18,4 @@ print ("Database version : %s " % data)
 
 # disconnect from server
 db.close()
+

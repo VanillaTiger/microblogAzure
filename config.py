@@ -7,11 +7,14 @@ load_dotenv(os.path.join(basedir, '.env'))
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://azure:6#vWHD_$@127.0.0.1:56080/localdb"
+    #SQLALCHEMY_DATABASE_URI = "mysql+pymysql://azure:6#vWHD_$@127.0.0.1:56080/localdb"
     #Database=localdb;Data Source=127.0.0.1:56080;User Id=azure;Password=6#vWHD_$
 
-    #SQLALCHEMY_DATABASE_URI = os.environ.get('MYSQLCONNSTR_localdb') or\
-    #   'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('blalbals') or\
+                              'sqlite:///' + 'D:\home\site\wwwroot\\'+'app.db'
+
+    print('ADAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= '+basedir)
+    #'sqlite:///' + os.path.join(basedir, 'app.db')
 
     #SQLALCHEMY_DATABASE_URI = "jdbc:sqlserver://microblogazuresql.database.windows.net:1433;database=myDB;user=adam@microblogazuresql;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
 
