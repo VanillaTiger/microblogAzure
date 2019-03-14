@@ -12,6 +12,8 @@ from flask_babel import Babel, lazy_gettext as _l
 from elasticsearch import Elasticsearch
 from redis import Redis
 import rq
+from sqlalchemy import create_engine
+
 from config import Config
 
 db = SQLAlchemy()
@@ -30,6 +32,12 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     db.init_app(app)
+
+    # manual connection to tthe db
+    # engine = create_engine('mysql+pymysql://Adam:adam@localhost/mydb')
+    # connection = engine.connect()
+
+
     migrate.init_app(app, db)
     login.init_app(app)
     mail.init_app(app)
