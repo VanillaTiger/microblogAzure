@@ -1,0 +1,156 @@
+{% extends 'basic_challenge.html' %}
+{% from "macroHTML.html" import render_field %}
+{% block header %}
+    {% include 'navbarChallenge.html' %}
+{% endblock %}
+{% block content %}
+   <div id="main">
+   <div class="register_window">
+                 {% with messages = get_flashed_messages(with_categories=True) %}
+                 {% if messages %}
+                     {% for msg in messages %}
+                         <div class="alert alert-{{ msg[0] }}" role="alert">
+                                 {{ msg[1] }}
+                         </div>
+                     {% endfor %}
+                 {% endif %}
+                 {% endwith %}
+         </div>
+     <div class="reg-temp mx-auto my-5 position-absolute rounded">
+        <div id="slider" class="carousel slide" data-ride="carousel" data-interval="false" >
+          <!-- Indicators
+          <ul class="carousel-indicators">
+            <li data-target="#slider" data-slide-to="0" class="active"></li>
+            <li data-target="#slider" data-slide-to="1"></li>
+            <li data-target="#slider" data-slide-to="2"></li>
+          </ul>  -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+               {%  if formch  %}
+                   <span class="title-register border-bottom"> What do you want to do (check boxy)</span>
+                     <div class="mx-auto mx-2 px-3 py-3">
+                          <form id="form_register_two" method="POST" action="" novalidate>
+                              <div class="form-group">
+                                        {{ render_field(formch.solveChellange) }}
+                                        {{ render_field(formch.needTech)}}
+                              </div>
+                                <div class="row justify-content-center  my-3 mx-0">
+                                    {{ render_field(formch.submitch)}}
+                                </div>
+                          </form>
+                     </div>
+                 {% endif %}
+           </div>
+           <div class="carousel-item">
+              {%  if formpr  %}
+                      <span class="title-register border-bottom">Podstawowe dane</span>
+                     <div class="mx-auto mx-2 px-3 py-3">
+                      <form id="form_register_one" method="POST" action="" novalidate>
+                          <div class="form-group">
+                            {{ render_field(formpr.firstname) }}
+                            {{ render_field(formpr.lastname)}}
+                            {{ render_field(formpr.email) }}
+                            {{ render_field(formpr.password)}}
+                            {{ render_field(formpr.company) }}
+                          </div>
+                          <div class="form-check">
+                                 {{ render_field(formpr.companycheck) }}
+                          </div>
+                            <div class="row justify-content-center  my-3 mx-0">
+                             {{ render_field(formpr.submitpr)}}
+                            </div>
+                      </form>
+                     </div>
+                 {% endif %}
+            </div>
+    <div class="carousel-item">
+       {% if formad %}
+             <span class="title-register border-bottom">Szczegółowe dane</span>
+             <div class="mx-auto mx-2 px-3 py-3">
+             <form id="form_register-three" method="POST" action="" novalidate>
+                 <div class="form-group">
+                    {{ render_field(formad.location) }}
+                    {{ render_field(formad.phone)}}
+                    {{ render_field(formad.age) }}
+                    {{ render_field(formad.description)}}
+                 </div>
+                    <div class="row justify-content-center  my-3 mx-0">
+                      {{ render_field(formad.submitad)}}
+                    </div>
+              </form>
+             </div>
+       {% endif %}
+     </div>
+  </div>
+          <!-- Left and right controls -->
+          <!-- <a class="carousel-control-prev" href="#slider" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>-->
+   <a class="carousel-control-next" style="display: none;" href="#slider" data-slide="next"></a>
+      </div>
+     </div>
+   </div>
+   <script>
+      function divFunction(){
+      /*   $('.carousel-control-next').click(function(e){
+	        e.preventDefault();
+	     $('#slider').carousel( $(this).data());
+         });*/
+	            $('a[data-slide="next"]').click();
+      }
+   </script>
+    <script>
+       $(document).ready(function() {
+        $('#form_register_one').on('submit', function(event) {
+        $.ajax({
+            data: {
+                    firstname: $('#firstname').val(),
+                    lastname: $('#lastname').val(),
+                    email: $('#email').val(),
+                    password: $('#password').val(),
+                    confirm: $('#confirm').val(),
+                    check: $('#companycheck').val(),
+            },
+            success: function (data) {
+                     alert('ok');
+                     divFunction();
+            },
+            type: 'POST',
+            url: '/'
+        })
+        event.preventDefault();
+        });
+        $('#form_register_two').on('submit', function(event) {
+        $.ajax({
+            data: {
+                    solve: $('#solveChellange').val(),
+                    need: $('#needTech').val()
+            },
+            type: 'POST',
+            url: '/',
+            success: function (data) {
+                     alert('ok');
+                     divFunction();
+            }
+
+        })
+             event.preventDefault();
+        });
+         $('#form_register-three').on('submit', function(event) {
+            $.ajax({
+            data: {
+                    location: $('#location').val(),
+                    phone: $('#phone').val(),
+                    email: $('#age').val(),
+                    password: $('#description').val()
+            },
+            type: 'POST',
+            url: '/about',
+             })
+         });
+});
+    </script>
+{% endblock %}
+{% block footer %}
+    {% include 'footer.html' %}
+{%  endblock %}

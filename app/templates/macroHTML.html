@@ -1,0 +1,74 @@
+{% macro render_field(field) %}
+  {% if field.errors %}
+       {% if field.type == 'BooleanField' %}
+            {{ field.label(class_='form-check-label') }}
+            {{ field(class_='form-check-input ml-3 is-invalid') }}
+         {% endif %}
+         {% if field.type == 'StringField' or field.type == 'PasswordField'%}
+             {{ field.label }}
+            {{ field( class_='form-control is-invalid')}}
+         {% endif %}
+         {% if field.type == 'IntegerField is-invalid' %}
+             {{ field.label }}
+            {{ field( class_='form-control is-invalid')}}
+         {% endif %}
+         {% if field.type == 'TextAreaField is-invalid' %}
+             {{ field.label }}
+            {{ field( class_='form-control is-invalid')}}
+         {% endif %}
+        {% for error in field.errors %}
+         <span class="alert custom-alert alert-danger custom-alert-danger">{{ error }}</span>
+        {% endfor %}
+      {% else %}
+         {% if field.type == 'BooleanField' %}
+             <div class="form-check form-check-inline mt-3">
+                {{ field(class_='form-check-input') }}
+                {{ field.label(class_='form-check-label') }}
+             </div>
+         {% endif %}
+         {% if field.type == 'StringField' or field.type == 'PasswordField'%}
+             {{ field.label }}
+            {{ field( class_='form-control')}}
+         {% endif %}
+         {% if field.type == 'IntegerField' %}
+             {{ field.label }}
+            {{ field( class_='form-control')}}
+         {% endif %}
+         {% if field.type == 'TextAreaField' %}
+             {{ field.label }}
+            {{ field( class_='form-control')}}
+         {% endif %}
+         {% if field.type == 'SubmitField' %}
+            {{ field( class_='btn btn-block btn-primary ')}}
+         {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{% macro render_newChallenge(field)%}
+{% if field.errors %}
+        {% if field.type == 'StringField'%}
+           <div class="form-group">
+             <div class="row">
+                 {{ field.label(class_='control-label col-lg-4') }}
+               <div class="col-sm-8">
+                 {{ field(class_='form-control') }}
+               </div>
+             </div>
+           </div>
+        {% endif %}
+{% else %}
+        {% if field.type == 'StringField'%}
+           <div class="form-group">
+           <div class="row">
+                 {{ field.label(class_='control-label col-4') }}
+               <div class="col-8">
+                 {{ field(class_='form-control') }}
+               </div>
+           </div>
+           </div>
+        {% endif %}
+        {% if field.type == 'SubmitField' %}
+            {{ field( class_='btn btn-block btn-primary my-5')}}
+         {% endif %}
+{% endif %}
+{% endmacro %}

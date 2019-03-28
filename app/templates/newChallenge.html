@@ -1,0 +1,77 @@
+{% extends 'basic_challenge.html' %}
+{% from "macroHTML.html" import render_newChallenge %}
+{% block header %}
+    {% include 'navbarMain.html' %}
+{% endblock %}
+{% block content %}
+    <article>
+    <div class="container">
+    <div class="row mt-3">
+     <div class="col-sm-12 col-lg-6 my-3 ">
+         <h2 class="my-4">Title</h2>
+         <div class="img-article my-3">
+             <img src="{{ url_for('static', filename='Images/zd2.jpg') }}">
+         </div>
+         <div class="form-group">
+              <label for="input-description-new-challenge">description:</label>
+              <textarea class="form-control rounded-0" id="input-description-new-challenge" rows="4"></textarea>
+         </div>
+     </div>
+     <div id="main-article" class="col-sm-12 col-lg-6 ml-auto my-4 pl-5 border-left">
+         {%  if form %}
+             <div class="mt-4">
+         <form id="form_new-challenge form-horizontal"  method="POST" action="" novalidate>
+                     {{ render_newChallenge(form.target) }}
+                     {{ render_newChallenge(form.budget)}}
+                     {{ render_newChallenge(form.data_adv) }}
+                     {{ render_newChallenge(form.wylacznosc)}}
+                     {{ render_newChallenge(form.technology)}}
+                     {{ render_newChallenge(form.location)}}
+                     {{ render_newChallenge(form.wishlist)}}
+                     {{ render_newChallenge(form.aboutcompany)}}
+                    <div class="row justify-content-center  my-3 mx-0">
+                      {{ render_newChallenge(form.submitnewchallenge)}}
+                    </div>
+              </form>
+             </div>
+         {% endif %}
+         <h2 class="my-4">#lorem #ipsum #tag</h2>
+         <div class="row mt-5 pt-3">
+             <div class="col-8">
+                 <h6 class="d-inline-block">Share: </h6>
+                  <div class="socialmedia-icon ml-2 d-inline-block">
+                     <a href="https://www.facebok.pl"><img class="flip-horizontal-top" src="{{ url_for('static', filename='Images/fb.png')}}" alt="fb"></a>
+                 </div>
+                 <div class="socialmedia-icon ml-2 d-inline-block ">
+                         <a href="https://www.twitter.com"><img class="flip-horizontal-top" src="{{ url_for('static', filename='Images/tw.png')}}" alt="twitter"></a>
+                </div>
+                 <div class="socialmedia-icon ml-2 d-inline-block ">
+                         <a href="https://www.facebok.pl"><img class="flip-horizontal-top" src="{{ url_for('static', filename='Images/ch.png')}}" alt="chat"></a>
+                </div>
+             </div>
+             <div class="col-4 text-right">
+                 <span>#</span>
+                 <a class="mx-1" href=""><img src="{{ url_for('static', filename='Images/heart.png') }} " alt="like" title="like"></a>
+                 <span id="licznik">1,458</span>
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
+</article>/
+     <script>
+   $(window).resize(function() {
+  if($(window).width() <= 980) {
+     $('#main-article').removeClass('border-left');
+     $('#main-article').addClass('border-top');
+  }
+  if($(window).width() > 980) {
+     $('#main-article').addClass('border-left');
+     $('#main-article').removeClass('border-top');
+  }
+ });
+ </script>
+{% endblock %}
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

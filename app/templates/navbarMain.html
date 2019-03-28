@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-light nav-custom">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <form class="form-inline ml-lg-auto ml-md-auto ml-sm-auto">
+                      <input id="input-search" class="form-control d-none mt-lg-0 mt-md-0 mt-sm-0 mt-2" type="search" placeholder="Search" aria-label="Search">
+                      <a id="btn-search" href="javascript:void(0)" class="mx-lg-2 mx-md-2 mx-sm-2 "><img src="{{ url_for('static', filename='Images/schearch.png') }}" alt="search"></a>
+              </form>
+                <ul class="navbar-nav mr-0">
+                  <li class="nav-item ">
+                    <a class="nav-link " href="http://127.0.0.1:5000/signchallenge">Sign in</a>
+                  </li>
+                </ul>
+         </div>
+     </nav>
+    <nav class="navbar navbar-expand-sm navbar-light border-top border-bottom nav-custom">
+     <ul class="navbar-nav mx-lg-auto mx-md-auto ">
+         <li class="nav-item mt-2 mx-3 text-sm-center">
+             <a class="nav-link" href="http://127.0.0.1:5000/challenges/newchallenge">Create a challenge</a>
+         </li>
+         <li class="divider-vertical my-auto d-none d-sm-block"></li>
+         <li class="nav-item my-2 mx-3 text-sm-center ">
+             <a class="nav-link" href="http://127.0.0.1:5000/challenges">View chalenges</a>
+         </li>
+            <li class="divider-vertical my-auto d-none d-sm-block"></li>
+          <li class="nav-item my-2 mx-3 text-sm-center">
+             <a class="nav-link" href="#">Explore comunnity</a>
+         </li>
+            <li class="divider-vertical my-auto d-none d-sm-block"></li>
+          <li class="nav-item my-2 mx-3 text-sm-center">
+             <a class=nav-link href="#">My challenges</a>
+         </li>
+     </ul>
+    </nav>
+    <script>
+      $(document).ready(function() {
+        $("#btn-search").click(function(event) {
+            if($('#input-search').is(":visible")){
+                     $('#input-search').addClass('d-none');
+
+                } else{
+                    $('#input-search').removeClass('d-none');
+                }
+        });
+
+
+        });
+    </script>

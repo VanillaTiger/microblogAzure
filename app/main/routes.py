@@ -6,10 +6,23 @@ from flask_babel import _, get_locale
 from guess_language import guess_language
 from app import db
 from app.main.forms import EditProfileForm, PostForm, SearchForm, MessageForm
+from app.main.forms import newChallenge,RegistrationPrimaryForm, RegistrationAdvForm, RegistrationAdvChForm
 from app.models import User, Post, Message, Notification
 from app.translate import translate
 from app.main import bp
 
+@bp.route('/challenges')
+def articles():
+    return render_template('challenges.html', title='challenges')
+
+@bp.route('/challenges/newchallenge')
+def newchallenge():
+    form= newChallenge()
+    return render_template('newChallenge.html', title='New challenge', form=form)
+
+@bp.route('/signchallenge', methods=['GET', 'POST'])
+def signchallenge():
+    return render_template('signchallenge.html',title='SignChallenge', formad=RegistrationAdvForm(), formpr=RegistrationPrimaryForm(), formch=RegistrationAdvChForm())
 
 @bp.before_app_request
 def before_request():
